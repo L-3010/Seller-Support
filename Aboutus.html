@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About us | Seller Support</title>
+
+    <link rel="stylesheet" href="aboutus.css" />
+  </head>
+  <body>
+    <header class="navbar">
+      <div class="logo animate-header">
+        <img src="logoo.png" alt="Seller Support Logo" />
+      </div>
+      <nav>
+        <ul class="links">
+          <li><a href="index.html" class="animate-header">Home</a></li>
+          <li><a href="services.html" class="animate-header">Services</a></li>
+          <li><a href="about us.html" class="animate-header">About Us</a></li>
+          <li><a href="contact us.html" class="animate-header">Contact Us</a></li>
+          <li><a href="admin reply.html" class="animate-header">Admin</a></li>
+          <div class="language-switcher">
+        <select onchange="setLanguage(this.value)">
+          <option value="en" selected>English</option>
+          <option value="ar">العربية</option>
+        </select>
+      </div>
+        </ul>
+      </nav>
+    </header>
+
+    <div id="en-content" class="content active">
+      <section class="content">
+        <h1>About Us</h1>
+        <p>
+          At Seller Support, we are dedicated to empowering online sellers with
+          seamless,<br />reliable, and expert e-commerce services.<br />
+          Specializing in platforms like Noon, Amazon, and other major
+          marketplaces, we help businesses grow, <br />streamline
+          operations,<br />
+          and maximize their potential in the digital retail space. With deep
+          knowledge of marketplace dynamics,<br />
+          policies, and performance metrics,<br />
+          our team offers end-to-end support – from account setup and listing
+          optimization to inventory management, advertising, and customer
+          service solutions.<br />
+          Whether you're a new seller looking to get started or an established
+          brand aiming to scale,<br />
+          Seller Support is your trusted partner in achieving e-commerce
+          success.
+        </p>
+      </section>
+    </div>
+
+    <div id="ar-content" class="content rtl" style="display: none">
+      <section class="content">
+        <h1>من نحن</h1>
+        <p>
+          في Seller Support، نكرس جهودنا لتمكين البائعين عبر الإنترنت من خلال
+          خدمات التجارة الإلكترونية السلسة والموثوقة والمتخصصة.<br />
+          من خلال التخصص في منصات مثل نون وأمازون والأسواق الرئيسية الأخرى،
+          نساعد الشركات على النمو، <br />
+          وتبسيط العمليات، <br />
+          وتحقيق أقصى إمكاناتها في مجال البيع بالتجزئة الرقمية. بفضل معرفتنا
+          العميقة بديناميكيات السوق، <br />
+          والسياسات، والمقاييس، <br />
+          يقدم فريقنا دعمًا شاملاً – بدءًا من إعداد الحساب وتحسين قوائم المنتجات
+          إلى إدارة المخزون، والإعلانات، وحلول خدمة العملاء.<br />
+          سواء كنت بائعًا جديدًا يتطلع إلى البدء أو علامة تجارية راسخة تهدف إلى
+          التوسع، <br />
+          فإن Seller Support هو شريكك الموثوق به لتحقيق النجاح في التجارة
+          الإلكترونية.
+        </p>
+      </section>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        setLanguage("en");
+      });
+
+      function setLanguage(lang) {
+        const enContent = document.getElementById("en-content");
+        const arContent = document.getElementById("ar-content");
+
+        if (lang === "en") {
+          enContent.style.display = "block";
+          arContent.style.display = "none";
+        } else if (lang === "ar") {
+          enContent.style.display = "none";
+          arContent.style.display = "block";
+        }
+      }
+    </script>
+  </body>
+</html>

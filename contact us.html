@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Contact | Seller Support</title>
+	<link rel="stylesheet" href="contact us.css" />
+	<link rel="stylesheet" href="Allservices.css" />
+	<meta name="page-id" content="Contact-Us">
+  </head>
+  <body>
+	<header class="navbar">
+	  <div class="logo animate-header">
+		<img src="logoo.png" alt="Seller Support Logo" />
+	  </div>
+	  <nav>
+		<ul class="links">
+		  <li><a href="index.html" class="animate-header">Home</a></li>
+		  <li><a href="services.html" class="animate-header">Services</a></li>
+		  <li><a href="aboutus.html" class="animate-header">About Us</a></li>
+		  <li><a href="contact us.html" class="animate-header">Contact Us</a></li>
+		  <div class="language-switcher">
+		  <select onchange="setLanguage(this.value)">
+			  <option value="en" selected>English</option>
+			  <option value="ar">العربية</option>
+		  </select>
+	  </div>
+    </ul>
+	  </nav>
+	 
+	</header>
+
+	<div id="en-content" class="content active">
+	  <section class="page-intro">
+		<h1>Get in Touch</h1>
+	  </section>
+	  <section class="contact-form-section">
+		<form class="contact-form" id="contactForm">
+		  <input type="text" id="userName" name="name" placeholder="Your Name" required />
+		  <input type="email" id="userEmail" name="email" placeholder="Your Email" required />
+		  <textarea id="userMessage" name="message" placeholder="Your Message" required></textarea>
+		  <button type="submit">Send Message</button>
+		</form>
+		<div class="contact-info">
+		  <p><strong>Email:</strong> support@sellersupport.com</p>
+		  <p><strong>Phone:</strong> +971 58 582 7979</p>
+		  <p><strong>Location:</strong> Online - Serving Worldwide</p>
+		</div>
+	  </section>
+	  <footer>
+		<p>&copy; 2025 Seller Support. All rights reserved.</p>
+	  </footer>
+	</div>
+
+	<div id="ar-content" class="content rtl" style="display: none;">
+	  <section class="page-intro">
+		<h1>تواصل معنا</h1>
+	  </section>
+	  <section class="contact-form-section">
+		<form class="contact-form" id="contactForm-ar">
+		  <input type="text" id="userName-ar" name="name" placeholder="اسمك" required />
+		  <input type="email" id="userEmail-ar" name="email" placeholder="بريدك الإلكتروني" required />
+		  <textarea id="userMessage-ar" name="message" placeholder="رسالتك" required></textarea>
+		  <button type="submit">إرسال الرسالة</button>
+		</form>
+		<div class="contact-info">
+		  <p><strong>البريد الإلكتروني:</strong> support@sellersupport.com</p>
+		  <p><strong>الهاتف:</strong> +971 58 582 7979</p>
+		  <p><strong>الموقع:</strong> عبر الإنترنت - نخدم حول العالم</p>
+		</div>
+	  </section>
+	  <footer>
+		<p>&copy; 2025 دعم البائعين. جميع الحقوق محفوظة.</p>
+	  </footer>
+	</div>
+	
+	<script src="admin.js"></script>
+	<script>
+	  document.addEventListener('DOMContentLoaded', () => {
+		setLanguage('en'); // Set default language
+	  });
+	
+	  function setLanguage(lang) {
+		const enContent = document.getElementById('en-content');
+		const arContent = document.getElementById('ar-content');
+		
+		if (lang === 'en') {
+		  enContent.style.display = 'block';
+		  arContent.style.display = 'none';
+		} else if (lang === 'ar') {
+		  enContent.style.display = 'none';
+		  arContent.style.display = 'block';
+		}
+	  }
+	  
+	  window.addEventListener("scroll", function () {
+		const navbar = document.querySelector(".navbar");
+		navbar.classList.toggle("scrolled", window.scrollY > 50);
+	  });
+	</script>
+  </body>
+</html>

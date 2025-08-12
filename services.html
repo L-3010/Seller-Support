@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Services | Seller Support</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome (لأيقونات صغيرة داخل البطاقات) -->
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+        integrity="sha512-bz4jMtKHG22w...=="  crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <link rel="stylesheet" href="services.css" />
+  <!-- لو عندك سكربتات إضافية خَلّيها تحت -->
+  <script defer src="script.js"></script>
+</head>
+<body>
+  <!-- ===========  NAVBAR  =========== -->
+  <header class="navbar" id="navbar">
+    <div class="logo">
+      <img src="logoo.png" alt="Seller Support Logo" />
+    </div>
+
+    <nav>
+      <ul>
+        <li><a href="index.html" class="animate-header">Home</a></li>
+        <li><a href="services.html" class="animate-header active">Services</a></li>
+        <li><a href="about us.html" class="animate-header">About&nbsp;Us</a></li>
+        <li><a href="english.html" class="animate-header">English</a></li>
+        <li><a href="contact us.html" class="animate-header">Contact&nbsp;Us</a></li>
+      </ul>
+    </nav>
+
+    <!-- Burger (يبين على الشاشات الصغيرة) -->
+    <button class="burger" id="burger"><i class="fa-solid fa-bars"></i></button>
+  </header>
+
+  <!-- ===========  HERO / INTRO  =========== -->
+  <section class="page-intro">
+    <h1>Our&nbsp;Services</h1>
+    <p>Everything you need to launch, scale, and dominate your e-commerce business.</p>
+  </section>
+
+  <!-- ===========  SERVICES GRID  =========== -->
+  <section class="services-grid">
+    <div class="service-box" data-idx="1">
+      <i class="fa-solid fa-chalkboard-user"></i>
+      <h3>Customer Training</h3>
+      <p>Full support with Amazon, Noon, Walmart&nbsp;&amp; others.</p>
+    </div>
+
+    <div class="service-box" data-idx="2">
+      <i class="fa-solid fa-globe"></i>
+      <h3>International Expansion</h3>
+      <p>High-converting listings, keyword-rich content.</p>
+    </div>
+
+    <div class="service-box" data-idx="3">
+      <i class="fa-solid fa-headset"></i>
+      <h3>Customer Service Management</h3>
+      <p>Ensure timely order processing&nbsp;&amp; tracking setup.</p>
+    </div>
+
+    <div class="service-box" data-idx="4">
+      <i class="fa-solid fa-chart-line"></i>
+      <h3>Reporting&nbsp;&amp; Analytics</h3>
+      <p>Dedicated agents handling messages&nbsp;&amp; returns.</p>
+    </div>
+
+    <div class="service-box" data-idx="5">
+      <i class="fa-solid fa-lightbulb"></i>
+      <h3>Sales&nbsp;&amp; Marketing Strategies</h3>
+      <p>Data insights, listing audits, and ranking improvement.</p>
+    </div>
+
+    <div class="service-box" data-idx="6">
+      <i class="fa-solid fa-bullhorn"></i>
+      <h3>Advertising &amp; PPC Management</h3>
+      <p>PPC campaigns, coupons, deals, external traffic setup.</p>
+    </div>
+
+    <div class="service-box" data-idx="7">
+      <i class="fa-solid fa-box-open"></i>
+      <h3>Product Listing Optimization</h3>
+      <p>Compelling content, A+ pages, SEO research.</p>
+    </div>
+
+    <div class="service-box" data-idx="8">
+      <i class="fa-solid fa-heart-pulse"></i>
+      <h3>Account Health &amp; Performance</h3>
+      <p>Proactive monitoring to keep your seller account safe.</p>
+    </div>
+
+    <div class="service-box" data-idx="9">
+      <i class="fa-solid fa-pager"></i>
+      <h3>Website Creation</h3>
+      <p>Professional, responsive, and user-friendly sites.</p>
+    </div>
+
+    <div class="service-box" data-idx="10">
+      <i class="fa-solid fa-share-nodes"></i>
+      <h3>Digital Marketing</h3>
+      <p>Boost your online presence and reach new customers.</p>
+    </div>
+  </section>
+
+  <!-- ===========  FOOTER  =========== -->
+  <footer>
+    <p>&copy;&nbsp;2025&nbsp;<strong>Seller Support</strong>. All&nbsp;rights&nbsp;reserved.</p>
+  </footer>
+
+  <!-- ===========  MINI-SCRIPT (للهامبرغر والسكроль)  =========== -->
+  <script>
+    /* nav background on scroll */
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 60);
+    });
+
+    /* mobile burger toggle */
+    const burger = document.getElementById('burger');
+    const navUl  = document.querySelector('nav ul');
+    burger.addEventListener('click', () => {
+      navUl.classList.toggle('open');
+      burger.classList.toggle('open');
+    });
+  </script>
+</body>
+</html>

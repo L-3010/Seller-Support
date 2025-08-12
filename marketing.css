@@ -1,0 +1,207 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, sans-serif;
+  color: #222;
+  line-height: 1.6;
+  background-image: url("e-commerce6.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+.navbar {
+  background-color: transparent;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px 60px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  transition: all 1.3s ease;
+}
+
+.navbar.scrolled {
+  background-color: #fff;
+  border-bottom: 1px solid #eee;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  padding: 10px 40px;
+  height: 100px;
+}
+
+.logo img {
+  height: 150px;
+
+  transition: all 1.3s ease;
+}
+
+.links {
+  display: flex;
+  gap: 30px;
+  margin-bottom: 50px;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+}
+
+nav a {
+  text-decoration: none;
+  color: #000;
+  font-weight: 500;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+nav a::after {
+  content: "";
+  height: 2px;
+  width: 0;
+  background-color: #000;
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  transition: width 0.3s ease;
+}
+
+nav a:hover::after {
+  width: 100%;
+}
+.h2{
+   font-size: 32px;  
+  color: #1d2d50;
+  margin-top: -400px;
+}
+
+/* تنسيق الأقسام الرئيسية */
+.marketing-advisor-section {
+    padding: 60px 0; /* مسافة داخلية علوية وسفلية */
+    background-color: #f9f9f9; /* لون خلفية خفيف */
+}
+
+/* لتوسيط المحتوى وتحديد عرضه */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+/* نظام الشبكة (Grid System) - بسيط للتقسيم */
+.row {
+    display: flex;
+    flex-wrap: wrap; /* للسماح للأعمدة بالانتقال إلى سطر جديد في الشاشات الصغيرة */
+    margin: 0 -15px; /* لتعويض البادينج في الأعمدة */
+}
+
+.col-lg-8, .col-lg-4 {
+    padding: 0 15px; /* مسافة داخلية للأعمدة */
+    box-sizing: border-box; /* لضمان أن البادينج لا يزيد العرض الكلي */
+}
+
+/* الأعمدة لشاشات سطح المكتب الكبيرة (>= 992px) */
+@media (min-width: 992px) {
+    .col-lg-8 {
+        flex: 0 0 66.666667%; /* 8 من 12 عمود */
+        max-width: 66.666667%;
+    }
+    .col-lg-4 {
+        flex: 0 0 33.333333%; /* 4 من 12 عمود */
+        max-width: 33.333333%;
+    }
+    .order-lg-1 { order: 1; }
+    .order-lg-2 { order: 2; }
+}
+
+/* الأعمدة للشاشات الأصغر (الموبايل) - عمود واحد لكل صف */
+@media (max-width: 991px) {
+    .col-lg-8, .col-lg-4 {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+    .order-1 { order: 1; }
+    .order-2 { order: 2; }
+}
+
+
+/* تنسيق العناوين والفقرات */
+.section-title {
+    font-size: 2.5em;
+    color: #333;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.subsection-title {
+    font-size: 1.8em;
+    color: #555;
+    margin-top: 40px;
+    margin-bottom: 20px;
+}
+
+p {
+    font-size: 1em;
+    line-height: 1.6;
+    color: #666;
+    margin-bottom: 15px;
+}
+
+ul {
+    list-style: none; /* إزالة النقاط الافتراضية */
+    padding: 0;
+    margin-bottom: 15px;
+}
+
+ul li {
+    padding: 8px 0;
+    color: #666;
+    position: relative;
+    padding-left: 25px;
+}
+
+ul.solution-list li::before {
+    content: '✔'; /* أيقونة بسيطة */
+    color: #4CAF50; /* لون الأيقونة */
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    font-weight: bold;
+}
+
+/* تنسيق الكتل المختلفة */
+.description-block,
+.problems-block,
+.solutions-block,
+.results-block,
+.project-details-block {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    margin-bottom: 30px;
+}
+
+/* تنسيق الشريط الجانبي */
+.sidebar-content {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    /* في الشاشات الصغيرة، قد تحتاج لمساحة علوية */
+    margin-bottom: 30px;
+}
+
+@media (max-width: 991px) {
+    .sidebar-content {
+        margin-top: 30px; /* مسافة بين المحتوى الرئيسي والجانبي في الموبايل */
+    }
+}

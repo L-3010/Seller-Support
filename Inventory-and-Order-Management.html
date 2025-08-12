@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Inventory and Order Management | Seller Support</title>
+    <link rel="stylesheet" href="seller support.css" />
+    <link rel="stylesheet" href="Allservices.css" />
+    <meta name="page-id" content="Inventory-and-Order-Management">
+  </head>
+  <body>
+        <header class="navbar">
+      <div class="logo animate-header">
+        <img src="logoo.png" alt="Seller Support Logo" />
+      </div>
+      <nav>
+        <ul class="links">
+          <li><a href="index.html" class="animate-header">Home</a></li>
+          <li><a href="services.html" class="animate-header">Services</a></li>
+          <li><a href="about us.html" class="animate-header">About Us</a></li>
+          <li><a href="contact us.html" class="animate-header">Contact Us</a></li>
+          <li><a href="admin reply.html" class="animate-header">Admin</a></li>
+          <div class="language-switcher">
+        <select onchange="setLanguage(this.value)">
+          <option value="en" selected>English</option>
+          <option value="ar">العربية</option>
+        </select>
+      </div>
+        </ul>
+      </nav>
+    </header>
+
+    <div id="en-content" class="content active">
+        <section class="description">
+            <h1>Inventory and Order Management</h1>
+            <p>
+                We provide end-to-end inventory and order management services to streamline your operations. From monitoring stock levels and processing orders to handling shipping and tracking, our solutions prevent stockouts, minimize errors, and improve your overall efficiency.
+            </p>
+        </section>
+        <section class="rating-submission-section">
+            <div class="rating-container">
+                <h2 class="rating-title">⭐ Rate Our Service!</h2>
+                <p class="rating-sub">How would you rate your experience with us?</p>
+                <form id="userRatingForm" class="rating-form">
+                    <input type="text" id="raterName" placeholder="Your Name (required)" />
+                    <div class="rating-stars" id="userRatingStars">
+                        <span data-value="1">&#9733;</span>
+                        <span data-value="2">&#9733;</span>
+                        <span data-value="3">&#9733;</span>
+                        <span data-value="4">&#9733;</span>
+                        <span data-value="5">&#9733;</span>
+                    </div>
+                    <input type="hidden" id="rating-input" name="rating" value="0" />
+                    <button type="submit" class="submit-rating-btn">Submit Rating</button>
+                    <p id="userRatingStatus" class="rating-status"></p>
+                </form>
+                <div class="overall-rating-summary">
+                    <h3>Overall Rating: <span id="overallAverageRating">N/A</span> (<span id="totalRatingsCount">0</span> Ratings)</h3>
+                </div>
+            </div>
+        </section>
+        <section class="comment-section">
+            <div class="comment-container">
+                <h2 class="comment-title">💬 Share your thoughts</h2>
+                <p class="comment-sub">We'd love to hear from you! Leave your comment below 👇</p>
+                <form id="userCommentForm" class="comment-form">
+                    <input type="text" id="userName" placeholder="Your Name" required />
+                    <textarea id="userMessage" placeholder="Write your comment..." rows="4" required></textarea>
+                    <button type="submit" class="submit-comment-btn">Send</button>
+                    <p id="userCommentStatus" class="comment-status"></p>
+                </form>
+            </div>
+        </section>
+        <section class="all-comments">
+            <div class="comments-wrapper">
+                <h3 class="comment-heading">What others are saying 👇</h3>
+                <div id="public-comments-container" class="comments-grid"></div>
+            </div>
+        </section>
+        <footer>
+            <p>&copy; 2025 Seller Support. All rights reserved.</p>
+        </footer>
+    </div>
+    
+    <div id="ar-content" class="content rtl" style="display: none;">
+        <section class="description">
+            <h1>إدارة المخزون والطلبات</h1>
+            <p>
+                نقدم خدمات شاملة لإدارة المخزون والطلبات لتبسيط عملياتك. من مراقبة مستويات المخزون ومعالجة الطلبات إلى التعامل مع الشحن والتتبع، تمنع حلولنا نفاد المخزون وتقلل الأخطاء وتحسن كفاءتك العامة.
+            </p>
+        </section>
+        <section class="rating-submission-section">
+            <div class="rating-container">
+                <h2 class="rating-title">⭐ قيم خدماتنا!</h2>
+                <p class="rating-sub">كيف تقيم تجربتك معنا؟</p>
+                <form id="userRatingForm-ar" class="rating-form">
+                    <input type="text" id="raterName-ar" placeholder="اسمك (مطلوب)" />
+                    <div class="rating-stars" id="userRatingStars-ar">
+                        <span data-value="1">&#9733;</span>
+                        <span data-value="2">&#9733;</span>
+                        <span data-value="3">&#9733;</span>
+                        <span data-value="4">&#9733;</span>
+                        <span data-value="5">&#9733;</span>
+                    </div>
+                    <input type="hidden" id="rating-input-ar" name="rating" value="0" />
+                    <button type="submit" class="submit-rating-btn">إرسال التقييم</button>
+                    <p id="userRatingStatus-ar" class="rating-status"></p>
+                </form>
+                <div class="overall-rating-summary">
+                    <h3>التقييم العام: <span id="overallAverageRating-ar">لا يوجد</span> (<span id="totalRatingsCount-ar">0</span> تقييمات)</h3>
+                </div>
+            </div>
+        </section>
+        <section class="comment-section">
+            <div class="comment-container">
+                <h2 class="comment-title">💬 شاركنا رأيك</h2>
+                <p class="comment-sub">يسعدنا أن نسمع منك! اترك تعليقك أدناه 👇</p>
+                <form id="userCommentForm-ar" class="comment-form">
+                    <input type="text" id="userName-ar" placeholder="اسمك" required />
+                    <textarea id="userMessage-ar" placeholder="اكتب تعليقك..." rows="4" required></textarea>
+                    <button type="submit" class="submit-comment-btn">إرسال</button>
+                    <p id="userCommentStatus-ar" class="comment-status"></p>
+                </form>
+            </div>
+        </section>
+        <section class="all-comments">
+            <div class="comments-wrapper">
+                <h3 class="comment-heading">ماذا يقول الآخرون 👇</h3>
+                <div id="public-comments-container-ar" class="comments-grid"></div>
+            </div>
+        </section>
+        <footer>
+            <p>&copy; 2025 دعم البائعين. جميع الحقوق محفوظة.</p>
+        </footer>
+    </div>
+
+    <script src="admin.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            setLanguage('en'); // Set default language
+        });
+
+        function setLanguage(lang) {
+            const enContent = document.getElementById('en-content');
+            const arContent = document.getElementById('ar-content');
+            
+            if (lang === 'en') {
+                enContent.style.display = 'block';
+                arContent.style.display = 'none';
+            } else if (lang === 'ar') {
+                enContent.style.display = 'none';
+                arContent.style.display = 'block';
+            }
+        }
+        
+        window.addEventListener("scroll", function () {
+            const navbar = document.querySelector(".navbar");
+            navbar.classList.toggle("scrolled", window.scrollY > 50);
+        });
+    </script>
+  </body>
+</html>
