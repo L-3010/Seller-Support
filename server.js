@@ -13,6 +13,8 @@ app.get('/', (req, res) => {
   res.sendFile(__dirname + '/index.html');
 });
 
+app.use(express.static(__dirname));
+
 // اتصال مع قاعدة البيانات MongoDB
 mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log("MongoDB connected successfully."))
