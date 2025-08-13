@@ -109,3 +109,18 @@ footer{
   text-align:center;padding:35px 20px;margin-top:90px;
   font-size:14px;color:#777;
 }
+
+/* Language Switcher */
+.language-switcher select {
+  background-color: #ff9642;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 1rem;
+  margin: 0 5px;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
