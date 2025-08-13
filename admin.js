@@ -4,23 +4,16 @@
 const API_URL_COMMENTS = "http://localhost:5000/comments";
 const API_URL_RATINGS = "http://localhost:5000/ratings";
 
-// (قم بإزالة تعريف هذه المتغيرات من هنا)
-// const commentsContainerAdmin = document.getElementById("comments-container");
-// const adminRatingsList = document.getElementById("adminRatingsList");
-// const resetButton = document.getElementById("resetRatingsButton");
-// const adminRatingStatus = document.getElementById("adminRatingStatus");
-
-
 // دالة لجلب وعرض التعليقات في لوحة المسؤول
-async function loadCommentsAdmin(commentsContainer) { // <--- تعديل: استقبال العنصر كـ parameter
-    if (!commentsContainer) return; // تأكيد وجود العنصر
+async function loadCommentsAdmin(commentsContainer) {
+    if (!commentsContainer) return;
 
     try {
         const res = await fetch(API_URL_COMMENTS);
         if (!res.ok) throw new Error('Failed to fetch comments for admin.');
         const comments = await res.json();
 
-        commentsContainer.innerHTML = ""; // مسح المحتوى القديم
+        commentsContainer.innerHTML = "";
 
         if (comments.length === 0) {
             commentsContainer.innerHTML = '<p>No comments submitted yet.</p>';
@@ -60,7 +53,7 @@ async function loadCommentsAdmin(commentsContainer) { // <--- تعديل: است
     }
 }
 
-// دالة لإرسال الرد على تعليق (تبقى كما هي)
+// دالة لإرسال الرد على تعليق
 async function submitReply(commentId, btn) {
     const textarea = btn.previousElementSibling;
     const message = textarea.value.trim();
@@ -77,13 +70,7 @@ async function submitReply(commentId, btn) {
         });
 
         if (response.ok) {
-            // بما أن loadCommentsAdmin أصبحت تأخذ parameter، سنقوم بتعديل بسيط هنا
-            // لإعادة تحميل التعليقات في Admin Panel.
-            // نستخدم window.location.reload() كحل سريع أو نمرر العنصر بشكل أذكى.
-            // الأفضل هو إعادة استدعاء الدالة مع العنصر الصحيح إذا كان متاحًا في النطاق.
-            // لحل هذه الحالة بشكل فعال، يجب أن تكون loadCommentsAdmin جزءًا من DOMContentLoaded
-            // وتعرف عناصرها داخله. دعنا نواصل بهذا التغيير ونقوم بتعديل DOMContentLoaded.
-            window.location.reload(); // حل سريع لإعادة تحميل التعليقات بالكامل
+            window.location.reload();
         } else {
             const errorData = await response.json();
             alert(errorData.message || "Failed to send reply");
@@ -97,7 +84,7 @@ async function submitReply(commentId, btn) {
     }
 }
 
-// دالة لحذف تعليق (تبقى كما هي)
+// دالة لحذف تعليق
 async function deleteComment(id, button) {
     const confirmed = confirm("Are you sure you want to delete this comment?");
     if (!confirmed) return;
@@ -108,7 +95,7 @@ async function deleteComment(id, button) {
         });
 
         if (res.ok) {
-            button.parentElement.remove(); // إزالة العنصر من DOM
+            button.parentElement.remove();
             alert("Comment deleted successfully!");
         } else {
             const errorData = await res.json();
@@ -121,7 +108,7 @@ async function deleteComment(id, button) {
 }
 
 // دالة لجلب وعرض جميع التقييمات في لوحة المسؤول
-async function loadAdminRatings(ratingsList) { // <--- تعديل: استقبال العنصر كـ parameter
+async function loadAdminRatings(ratingsList) {
     if (!ratingsList) return;
 
     try {
@@ -129,7 +116,7 @@ async function loadAdminRatings(ratingsList) { // <--- تعديل: استقبا�
         if (!res.ok) throw new Error('Failed to fetch ratings for admin.');
         const ratingsData = await res.json();
 
-        ratingsList.innerHTML = ''; // مسح القائمة الحالية
+        ratingsList.innerHTML = '';
 
         if (ratingsData.length === 0) {
             ratingsList.innerHTML = '<p>No ratings submitted yet.</p>';
@@ -159,24 +146,62 @@ function getPageId() {
     return metaTag ? metaTag.content : 'unknown_page';
 }
 
+// دالة واحدة لمعالجة إرسال أي فورم
+function handleFormSubmit(event) {
+    event.preventDefault();
+
+    const form = event.target;
+    const formId = form.id;
+
+    const formData = {
+        name: form.querySelector('[name="name"]').value,
+        email: form.querySelector('[name="email"]').value,
+        message: form.querySelector('[name="message"]') ? form.querySelector('[name="message"]').value : form.querySelector('[name="subject"]').value,
+        subject: form.querySelector('[name="subject"]') ? form.querySelector('[name="subject"]').value : 'Contact Message'
+    };
+
+    fetch('/contact', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData)
+    })
+    .then(response => response.json())
+    .then(data => {
+        const messageDiv = document.getElementById(formId.replace('Form', 'FormMessage'));
+        if (messageDiv) {
+            if (data.success) {
+                messageDiv.innerHTML = '<p style="color: green;">Message sent successfully!</p>';
+                form.reset();
+            } else {
+                messageDiv.innerHTML = '<p style="color: red;">Failed to send message.</p>';
+            }
+        }
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+        const messageDiv = document.getElementById(formId.replace('Form', 'FormMessage'));
+        if (messageDiv) {
+            messageDiv.innerHTML = '<p style="color: red;">An error occurred while sending the message.</p>';
+        }
+    });
+}
+
 document.addEventListener("DOMContentLoaded", () => {
-    // **********************************************
     // تعريف عناصر لوحة تحكم المسؤول داخل DOMContentLoaded
-    // **********************************************
     const commentsContainerAdmin = document.getElementById("comments-container");
     const adminRatingsList = document.getElementById("adminRatingsList");
     const resetButton = document.getElementById("resetRatingsButton");
     const adminRatingStatus = document.getElementById("adminRatingStatus");
 
 
-    // **********************************************
     // عناصر واستمعات لنموذج التقييم (النجوم فقط)
-    // **********************************************
     const userRatingStars = document.getElementById("userRatingStars");
     const userRatingForm = document.getElementById("userRatingForm");
     const overallAverageRating = document.getElementById("overallAverageRating");
     const totalRatingsCount = document.getElementById("totalRatingsCount");
-    let currentRating = 0; // لتخزين تقييم المستخدم
+    let currentRating = 0;
 
     if (userRatingStars) {
         const stars = userRatingStars.querySelectorAll("span");
@@ -184,9 +209,7 @@ document.addEventListener("DOMContentLoaded", () => {
         stars.forEach((star) => {
             star.addEventListener("click", () => {
                 currentRating = parseInt(star.dataset.value);
-                stars.forEach((s) => {
-                    s.classList.remove("active");
-                });
+                stars.forEach((s) => s.classList.remove("active"));
                 for (let i = 0; i < currentRating; i++) {
                     stars[i].classList.add("active");
                 }
@@ -209,7 +232,6 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // معالجة إرسال نموذج التقييم
     if (userRatingForm) {
         userRatingForm.addEventListener("submit", async (e) => {
             e.preventDefault();
@@ -232,14 +254,8 @@ document.addEventListener("DOMContentLoaded", () => {
             try {
                 const response = await fetch("http://localhost:5000/ratings", {
                     method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify({
-                        name: raterName,
-                        rating: currentRating,
-                        pageId: pageId,
-                    }),
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ name: raterName, rating: currentRating, pageId: pageId }),
                 });
 
                 if (response.ok) {
@@ -264,9 +280,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // **********************************************
     // وظيفة لتحميل وعرض متوسط التقييم العام
-    // **********************************************
     async function loadOverallRating() {
         const pageId = getPageId();
         try {
@@ -285,9 +299,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    // **********************************************
     // عناصر واستمعات لنموذج التعليقات (للمراسلة النصية فقط)
-    // **********************************************
     const userCommentForm = document.getElementById("userCommentForm");
     const publicCommentsContainer = document.getElementById("public-comments-container");
 
@@ -309,14 +321,8 @@ document.addEventListener("DOMContentLoaded", () => {
             try {
                 const response = await fetch("http://localhost:5000/comments", {
                     method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify({
-                        name: userName,
-                        message: userMessage,
-                        pageId: pageId,
-                    }),
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ name: userName, message: userMessage, pageId: pageId }),
                 });
 
                 if (response.ok) {
@@ -337,9 +343,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // **********************************************
-    // وظائف تحميل وعرض التعليقات العامة (بدون نجوم)
-    // **********************************************
+    // وظائف تحميل وعرض التعليقات العامة
     async function loadPublicComments() {
         if (!publicCommentsContainer) return;
         const pageId = getPageId();
@@ -373,7 +377,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    // معالج حدث لزر تصفير التقييمات (الآن داخل DOMContentLoaded)
+    // معالج حدث لزر تصفير التقييمات
     if (resetButton) {
         resetButton.addEventListener("click", async () => {
             if (!confirm("Are you sure you want to reset all ratings? This action cannot be undone.")) {
@@ -388,7 +392,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (response.ok) {
                     adminRatingStatus.textContent = "All ratings have been reset successfully!";
                     adminRatingStatus.style.color = "green";
-                    loadAdminRatings(adminRatingsList); // تمرير العنصر هنا
+                    loadAdminRatings(adminRatingsList);
                 } else {
                     adminRatingStatus.textContent = "Failed to reset ratings. Please try again.";
                     adminRatingStatus.style.color = "red";
@@ -402,7 +406,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // تحميل البيانات عند تحميل DOM بالكامل
-    // يتم استدعاء الدوال فقط إذا كانت العناصر الخاصة بها موجودة في HTML الصفحة الحالية.
     if (overallAverageRating && totalRatingsCount) {
         loadOverallRating();
     }
@@ -412,9 +415,30 @@ document.addEventListener("DOMContentLoaded", () => {
     
     // تحميل بيانات المسؤول فقط إذا كانت عناصر لوحة المسؤول موجودة في الصفحة
     if (commentsContainerAdmin) {
-        loadCommentsAdmin(commentsContainerAdmin); // <--- تمرير العنصر هنا
+        loadCommentsAdmin(commentsContainerAdmin);
     }
     if (adminRatingsList) {
-        loadAdminRatings(adminRatingsList); // <--- تمرير العنصر هنا
+        loadAdminRatings(adminRatingsList);
+    }
+
+    // الكود الخاص بنماذج الاتصال
+    const enContactForm = document.getElementById('contactForm');
+    if (enContactForm) {
+        enContactForm.addEventListener('submit', handleFormSubmit);
+    }
+    
+    const arContactForm = document.getElementById('contactForm-ar');
+    if (arContactForm) {
+        arContactForm.addEventListener('submit', handleFormSubmit);
+    }
+
+    const indexEnContactForm = document.getElementById('indexContactForm-en');
+    if (indexEnContactForm) {
+        indexEnContactForm.addEventListener('submit', handleFormSubmit);
+    }
+    
+    const indexArContactForm = document.getElementById('indexContactForm-ar');
+    if (indexArContactForm) {
+        indexArContactForm.addEventListener('submit', handleFormSubmit);
     }
 });
