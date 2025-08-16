@@ -7,7 +7,7 @@
     const email = document.getElementById("userEmail").value;
     const message = document.getElementById("userMessage").value;
 
-    const res = await fetch("http://localhost:5000/contact", {
+    const res = await fetch("http://seller-support-production.up.railway.app/contact", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ name, email, message }),

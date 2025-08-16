@@ -1,8 +1,8 @@
 // admin.js
 
 // ==== وظائف إدارة التعليقات في لوحة المسؤول ====
-const API_URL_COMMENTS = "http://localhost:5000/comments";
-const API_URL_RATINGS = "http://localhost:5000/ratings";
+const API_URL_COMMENTS = "http://seller-support-production.up.railway.app/comments";
+const API_URL_RATINGS = "http://seller-support-production.up.railway.app/ratings";
 
 // دالة لجلب وعرض التعليقات في لوحة المسؤول
 async function loadCommentsAdmin(commentsContainer) {
@@ -252,7 +252,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
             try {
-                const response = await fetch("http://localhost:5000/ratings", {
+                const response = await fetch("http://seller-support-backend-production.up.railway.app/ratings", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ name: raterName, rating: currentRating, pageId: pageId }),
@@ -284,7 +284,7 @@ document.addEventListener("DOMContentLoaded", () => {
     async function loadOverallRating() {
         const pageId = getPageId();
         try {
-            const res = await fetch(`http://localhost:5000/ratings/average?pageId=${pageId}`);
+            const res = await fetch(`http://seller-support-production.up.railway.app/ratings/average?pageId=${pageId}`);
             if (!res.ok) throw new Error('Failed to fetch average rating');
             const data = await res.json();
 
@@ -319,7 +319,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
             try {
-                const response = await fetch("http://localhost:5000/comments", {
+                const response = await fetch("http://seller-support-production.up.railway.app/comments", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ name: userName, message: userMessage, pageId: pageId }),
@@ -349,7 +349,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const pageId = getPageId();
 
         try {
-            const res = await fetch(`http://localhost:5000/comments?pageId=${pageId}`);
+            const res = await fetch(`http://seller-support-production.up.railway.app/comments?pageId=${pageId}`);
             if (!res.ok) throw new Error('Failed to fetch comments');
             const comments = await res.json();
 
@@ -385,7 +385,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
             try {
-                const response = await fetch("http://localhost:5000/ratings/reset", {
+                const response = await fetch("http://seller-support-production.up.railway.app/ratings/reset", {
                     method: "DELETE",
                 });
 
